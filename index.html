@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AF — AMIRUL FUSILAT, S. I. Kom.</title>
+    <meta name="description" content="Portofolio AMIRUL FUSILAT, S. I. Kom. — Website, Mobile App, Desain Grafis, Fotografi, Video Editing." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           ALL STYLES — INLINE DALAM SATU FILE
+           ============================================================ */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #0B0B0B;
+            --bg-secondary: #111111;
+            --bg-card: #161616;
+            --accent: #D4AF37;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B5B5B5;
+            --border-light: rgba(255, 255, 255, 0.08);
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --transition-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s;
+        }
+        .cursor-ring {
+            width: 40px;
+            height: 40px;
+            border: 1.5px solid rgba(212, 175, 55, 0.5);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
+        }
+
+        /* --- NOISE OVERLAY --- */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        /* --- SCROLL PROGRESS --- */
+        .scroll-progress {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 70px;
+            height: 70px;
+            z-index: 1000;
+            pointer-events: none;
+        }
+        .scroll-progress svg {
+            transform: rotate(-90deg);
+        }
+        .scroll-progress circle {
+            fill: none;
+            stroke-width: 4;
+        }
+        .scroll-progress circle:first-child {
+            stroke: var(--border-light);
+        }
+        .scroll-progress circle:last-child {
+            stroke: var(--accent);
+            stroke-dasharray: 289;
+            stroke-dashoffset: 289;
+            transition: stroke-dashoffset 0.1s linear;
+        }
+        .scroll-progress-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.6rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        #preloader.hide {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .preloader-inner {
+            text-align: center;
+        }
+        .preloader-logo {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+        .preloader-name {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        .preloader-bar-track {
+            width: 220px;
+            height: 2px;
+            background: var(--border-light);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 0 auto 1rem;
+        }
+        .preloader-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+            transition: width 0.2s linear;
+        }
+        .preloader-percent {
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        /* --- NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.2rem 0;
+            transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+        }
+        .navbar.scrolled {
+            background: rgba(11, 11, 11, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        .navbar-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .navbar-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+        .navbar-logo small {
+            font-size: 0.7rem;
+            font-weight: 300;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
+            margin-left: 0.3rem;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .nav-link {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0%;
+            height: 1.5px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--text-primary);
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .navbar-hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.3rem;
+        }
+        .navbar-hamburger span {
+            display: block;
+            width: 28px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .navbar-hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .navbar-hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+        .navbar-hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 8rem 0 4rem;
+            overflow: hidden;
+        }
+        .hero-bg-shapes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .hero-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.2;
+        }
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent);
+            top: -10%;
+            right: -5%;
+            animation: floatShape 12s ease-in-out infinite alternate;
+        }
+        .shape-2 {
+            width: 400px;
+            height: 400px;
+            background: #8b6b3d;
+            bottom: -10%;
+            left: -5%;
+            animation: floatShape 10s ease-in-out infinite alternate-reverse;
+        }
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            background: #3a2c1b;
+            top: 40%;
+            left: 40%;
+            animation: floatShape 14s ease-in-out infinite alternate;
+        }
+        @keyframes floatShape {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                transform: translate(60px, -40px) scale(1.1);
+            }
+        }
+        .hero-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero-container {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .hero-badge {
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border: 1px solid var(--border-light);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            display: inline-block;
+            width: fit-content;
+            background: rgba(212, 175, 55, 0.05);
+        }
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+        .hero-title-line {
+            display: block;
+        }
+        .hero-title-line-gold {
+            color: var(--accent);
+        }
+        .hero-title-sub {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            margin-top: 0.2rem;
+        }
+        .hero-subtitle {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+        .hero-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s var(--transition-smooth);
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(212, 175, 55, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-light);
+        }
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent);
+        }
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 1rem;
+        }
+        .hero-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .hero-stat-number {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .hero-visual {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .hero-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            overflow: visible;
+        }
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            border: 2px solid var(--border-light);
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: var(--font-heading);
+        }
+        .hero-image-glow {
+            position: absolute;
+            inset: -20px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2), transparent 70%);
+            filter: blur(40px);
+            z-index: 0;
+            animation: glowPulse 4s ease-in-out infinite alternate;
+        }
+        @keyframes glowPulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+        }
+        .hero-image-ring {
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 1px solid var(--border-light);
+            z-index: 1;
+            animation: spinRing 20s linear infinite;
+        }
+        @keyframes spinRing {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        .floating-dock {
+            position: absolute;
+            bottom: -20px;
+            right: 0;
+            display: flex;
+            gap: 0.8rem;
+            background: rgba(22, 22, 22, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 0.8rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid var(--border-light);
+            z-index: 5;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+        }
+        .dock-icon {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+        .dock-icon:hover {
+            transform: translateY(-4px) scale(1.1);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 2;
+            opacity: 0.6;
+            animation: bob 2s ease-in-out infinite;
+        }
+        @keyframes bob {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+        .scroll-indicator-text {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+        .scroll-indicator-line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        /* --- SECTION COMMON --- */
+        section {
+            padding: 6rem 0;
+        }
+        .section-label {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 3rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* --- ABOUT --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .about-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin: 2rem 0;
+        }
+        .about-stat {
+            display: flex;
+            flex-direction: column;
+        }
+        .about-stat-number {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .about-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .about-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-bottom: 2rem;
+        }
+        .skill-tag {
+            padding: 0.4rem 1rem;
+            background: var(--bg-card);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+        .about-image-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--bg-card);
+        }
+        .about-image-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+            background: var(--bg-card);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent);
+            font-family: var(--font-heading);
+            min-height: 300px;
+        }
+        .about-image-wrapper:hover .about-image-img {
+            transform: scale(1.03);
+        }
+        .about-image-glow {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), transparent 60%);
+            pointer-events: none;
+        }
+
+        /* --- SERVICES --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .service-card {
+            background: var(--bg-card);
+            padding: 2.5rem 1.8rem;
+            border-radius: 20px;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s var(--transition-smooth);
+            text-align: center;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .service-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1.2rem;
+            display: block;
+            color: var(--accent);
+        }
+        .service-title {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+        .service-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* --- PROJECTS --- */
+        .projects-filter {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 0.4rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+        }
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: all 0.4s var(--transition-smooth);
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--accent);
+        }
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-link {
+            font-weight: 600;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        .project-link:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        .project-meta {
+            padding: 1.2rem 1.5rem;
+        }
+        .project-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+        }
+        .project-name {
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 0.2rem;
+        }
+
+        /* --- EXPERIENCE / TIMELINE --- */
+        .timeline {
+            position: relative;
+            padding-left: 2.5rem;
+            border-left: 2px solid var(--border-light);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 1.5rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -2.7rem;
+            top: 0.3rem;
+            width: 14px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 0 3px var(--accent);
+        }
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 1.5rem 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+        }
+        .timeline-year {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        .timeline-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 0.3rem 0;
+        }
+        .timeline-company {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* --- SKILLS CIRCLES --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .skill-card {
+            text-align: center;
+        }
+        .skill-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1rem;
+        }
+        .skill-circle svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+        .skill-circle circle {
+            fill: none;
+            stroke-width: 8;
+        }
+        .skill-circle circle:first-child {
+            stroke: var(--border-light);
+        }
+        .skill-circle-fill {
+            stroke: var(--accent);
+            stroke-dasharray: 339.292;
+            stroke-dashoffset: 339.292;
+            transition: stroke-dashoffset 1.2s ease;
+        }
+        .skill-circle-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s var(--transition-smooth);
+        }
+        .testimonial-slide {
+            flex: 0 0 100%;
+            padding: 1rem;
+        }
+        .testimonial-card {
+            background: var(--bg-card);
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        .testimonial-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 1.5rem;
+            border: 2px solid var(--accent);
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--accent);
+        }
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .testimonial-text {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        .testimonial-name {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        .testimonial-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .testimonial-btn {
+            background: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: var(--font-body);
+        }
+        .testimonial-btn:hover {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        .testimonial-dots {
+            display: flex;
+            gap: 0.6rem;
+        }
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--border-light);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .dot.active {
+            background: var(--accent);
+            width: 30px;
+            border-radius: 10px;
+        }
+
+        /* --- CONTACT --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .contact-card.glass {
+            background: rgba(22, 22, 22, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid var(--border-light);
+        }
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .contact-form label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 0.3rem;
+            color: var(--text-secondary);
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+        .contact-form textarea {
+            resize: vertical;
+        }
+        .form-status {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: var(--accent);
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        .contact-detail {
+            display: flex;
+            gap: 1.2rem;
+            align-items: flex-start;
+        }
+        .contact-icon {
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+        .contact-detail h4 {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .contact-detail a,
+        .contact-detail p {
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .contact-detail a:hover {
+            color: var(--accent);
+        }
+        .contact-social {
+            display: flex;
+            gap: 1.2rem;
+        }
+        .contact-social a {
+            font-size: 1.6rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .contact-social a:hover {
+            transform: translateY(-4px);
+            color: var(--accent);
+        }
+        .contact-map .map-placeholder {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            color: var(--text-secondary);
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .map-sub {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-light);
+            padding: 4rem 0 2rem;
+        }
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.05em;
+        }
+        .footer-tagline {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .footer-nav {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .footer-nav a {
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+        .footer-nav a:hover {
+            color: var(--text-primary);
+        }
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border-light);
+            padding-top: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-copy {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .back-to-top {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+        .back-to-top:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* --- REVEAL ANIMATIONS --- */
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s var(--transition-smooth);
+        }
+        [data-reveal].revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        [data-reveal="fade-right"] {
+            transform: translateX(-40px);
+        }
+        [data-reveal="fade-right"].revealed {
+            transform: translateX(0);
+        }
+        [data-reveal="fade-left"] {
+            transform: translateX(40px);
+        }
+        [data-reveal="fade-left"].revealed {
+            transform: translateX(0);
+        }
+        [data-reveal="zoom"] {
+            transform: scale(0.9);
+        }
+        [data-reveal="zoom"].revealed {
+            transform: scale(1);
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content {
+                order: 2;
+                align-items: center;
+            }
+            .hero-description {
+                max-width: 100%;
+            }
+            .hero-visual {
+                order: 1;
+            }
+            .hero-stats {
+                justify-content: center;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                justify-content: center;
+                gap: 2rem;
+                padding: 2rem;
+                transition: right 0.4s var(--transition-smooth);
+                border-left: 1px solid var(--border-light);
+            }
+            .navbar-links.open {
+                right: 0;
+            }
+            .navbar-hamburger {
+                display: flex;
+            }
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            .testimonial-card {
+                padding: 2rem 1.5rem;
+            }
+            .scroll-progress {
+                bottom: 1rem;
+                right: 1rem;
+                width: 56px;
+                height: 56px;
+            }
+        }
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-actions {
+                flex-direction: column;
+                width: 100%;
+            }
+            .hero-actions .btn {
+                width: 100%;
+                text-align: center;
+            }
+            .contact-card.glass {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== PRELOADER ===== -->
+    <div id="preloader" role="status" aria-label="Loading">
+        <div class="preloader-inner">
+            <div class="preloader-logo">AF</div>
+            <div class="preloader-name">AMIRUL FUSILAT, S. I. Kom.</div>
+            <div class="preloader-bar-track">
+                <div class="preloader-bar-fill" id="preloaderBarFill"></div>
+            </div>
+            <div class="preloader-percent" id="preloaderPercent">0%</div>
+        </div>
+    </div>
+
+    <!-- ===== CUSTOM CURSOR ===== -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- ===== SCROLL PROGRESS ===== -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="46" />
+            <circle cx="50" cy="50" r="46" id="scrollProgressCircle" />
+        </svg>
+        <span class="scroll-progress-label">Scroll</span>
+    </div>
+
+    <!-- ===== NOISE OVERLAY ===== -->
+    <div class="noise-overlay" aria-hidden="true"></div>
+
+    <!-- ===== NAVIGATION ===== -->
+    <header class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container navbar-container">
+            <a href="#hero" class="navbar-logo" aria-label="Home">AF <small>AMIRUL FUSILAT</small></a>
+            <nav class="navbar-links" id="navbarLinks" aria-label="Primary navigation">
+                <a href="#about" class="nav-link" data-section="about">About</a>
+                <a href="#services" class="nav-link" data-section="services">Services</a>
+                <a href="#projects" class="nav-link" data-section="projects">Work</a>
+                <a href="#experience" class="nav-link" data-section="experience">Experience</a>
+                <a href="#testimonials" class="nav-link" data-section="testimonials">Testimonials</a>
+                <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </nav>
+            <button class="navbar-hamburger" id="hamburgerBtn" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="hero" aria-label="Hero introduction">
+        <div class="hero-bg-shapes" aria-hidden="true">
+            <div class="hero-shape shape-1"></div>
+            <div class="hero-shape shape-2"></div>
+            <div class="hero-shape shape-3"></div>
+        </div>
+        <div class="hero-grid-bg" aria-hidden="true"></div>
+        <div class="container hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">✦ Tersedia untuk Kolaborasi</div>
+                <h1 class="hero-title">
+                    <span class="hero-title-line">AMIRUL</span>
+                    <span class="hero-title-line hero-title-line-gold">FUSILAT</span>
+                    <span class="hero-title-sub">S. I. Kom.</span>
+                </h1>
+                <p class="hero-subtitle">Creative Designer · Front-End Developer · Visual Storyteller</p>
+                <p class="hero-description">
+                    Menggabungkan keahlian di bidang desain grafis, pengembangan web, dan
+                    produksi visual untuk menciptakan karya yang berdampak.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary magnetic-btn" data-strength="30">Lihat Karya</a>
+                    <a href="#contact" class="btn btn-outline magnetic-btn" data-strength="20">Hubungi Saya</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-count="7">0</span>
+                        <span class="hero-stat-label">Tahun Pengalaman</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-count="150">0</span>
+                        <span class="hero-stat-label">Proyek Selesai</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number" data-count="60">0</span>
+                        <span class="hero-stat-label">Klien Puas</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image-glow" aria-hidden="true"></div>
+                    <div class="hero-image" style="background:var(--bg-card);display:flex;align-items:center;justify-content:center;font-size:6rem;font-weight:700;color:var(--accent);font-family:var(--font-heading);">
+                        AF
+                    </div>
+                    <div class="hero-image-ring" aria-hidden="true"></div>
+                </div>
+                <div class="floating-dock" id="floatingDock">
+                    <a href="#" aria-label="Instagram" class="dock-icon">📷</a>
+                    <a href="#" aria-label="YouTube" class="dock-icon">▶️</a>
+                    <a href="#" aria-label="GitHub" class="dock-icon">⌘</a>
+                    <a href="#" aria-label="LinkedIn" class="dock-icon">🔗</a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator" id="scrollIndicator" aria-hidden="true">
+            <span class="scroll-indicator-text">Scroll</span>
+            <span class="scroll-indicator-line"></span>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about" id="about" aria-label="About me">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Tentang</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Mengubah ide menjadi karya visual.</h2>
+            <div class="about-grid">
+                <div class="about-text" data-reveal="fade-right" data-delay="200">
+                    <p>
+                        <strong>AMIRUL FUSILAT, S. I. Kom.</strong> — lulusan Sistem Informasi
+                        dengan spesialisasi di bidang desain dan pengembangan digital.
+                        Memadukan logika teknologi dengan estetika visual untuk menciptakan
+                        pengalaman yang bermakna.
+                    </p>
+                    <p>
+                        Berpengalaman dalam mengelola proyek desain grafis, pengembangan website,
+                        aplikasi mobile, hingga produksi konten video dan fotografi untuk berbagai
+                        klien dari UMKM hingga korporasi.
+                    </p>
+                    <div class="about-stats">
+                        <div class="about-stat">
+                            <span class="about-stat-number" data-count="7">0</span>
+                            <span class="about-stat-label">Tahun Pengalaman</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-number" data-count="150">0</span>
+                            <span class="about-stat-label">Proyek</span>
+                        </div>
+                        <div class="about-stat">
+                            <span class="about-stat-number" data-count="60">0</span>
+                            <span class="about-stat-label">Klien</span>
+                        </div>
+                    </div>
+                    <div class="about-skills">
+                        <span class="skill-tag">UI/UX Design</span>
+                        <span class="skill-tag">Front-End Dev</span>
+                        <span class="skill-tag">Photoshop</span>
+                        <span class="skill-tag">Illustrator</span>
+                        <span class="skill-tag">Editing Video</span>
+                        <span class="skill-tag">Fotografi</span>
+                        <span class="skill-tag">Flyer</span>
+                        <span class="skill-tag">Logo</span>
+                    </div>
+                    <a href="#" class="btn btn-primary magnetic-btn" data-strength="25">Download CV</a>
+                </div>
+                <div class="about-image" data-reveal="fade-left" data-delay="300">
+                    <div class="about-image-wrapper">
+                        <div class="about-image-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;color:var(--accent);font-family:var(--font-heading);background:var(--bg-secondary);">
+                            AF
+                        </div>
+                        <div class="about-image-glow" aria-hidden="true"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="services" id="services" aria-label="Services">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Layanan</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Apa yang saya tawarkan.</h2>
+            <div class="services-grid">
+                <div class="service-card" data-reveal="zoom" data-delay="150">
+                    <span class="service-icon">🌐</span>
+                    <h3 class="service-title">Website</h3>
+                    <p class="service-desc">Pengembangan website responsif, cepat, dan modern.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="200">
+                    <span class="service-icon">📱</span>
+                    <h3 class="service-title">Mobile App</h3>
+                    <p class="service-desc">Desain dan pengembangan aplikasi mobile yang intuitif.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="250">
+                    <span class="service-icon">🎨</span>
+                    <h3 class="service-title">Photoshop</h3>
+                    <p class="service-desc">Manipulasi foto, retouching, dan komposisi visual.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="300">
+                    <span class="service-icon">✒️</span>
+                    <h3 class="service-title">Illustrator</h3>
+                    <p class="service-desc">Ilustrasi vektor, ikon, dan desain grafis vektor.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="350">
+                    <span class="service-icon">🎬</span>
+                    <h3 class="service-title">Editing Video</h3>
+                    <p class="service-desc">Editing, color grading, dan efek visual profesional.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="400">
+                    <span class="service-icon">📸</span>
+                    <h3 class="service-title">Fotografi</h3>
+                    <p class="service-desc">Fotografi produk, potret, dan dokumentasi.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="450">
+                    <span class="service-icon">📄</span>
+                    <h3 class="service-title">Flyer</h3>
+                    <p class="service-desc">Desain flyer, brosur, dan materi promosi cetak.</p>
+                </div>
+                <div class="service-card" data-reveal="zoom" data-delay="500">
+                    <span class="service-icon">🔷</span>
+                    <h3 class="service-title">Logo</h3>
+                    <p class="service-desc">Brand identity dan desain logo yang kuat dan berkesan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== PROJECTS ===== -->
+    <section class="projects" id="projects" aria-label="Featured projects">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Portofolio</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Karya terbaru.</h2>
+            <div class="projects-filter" data-reveal="fade-up" data-delay="150">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="website">Website</button>
+                <button class="filter-btn" data-filter="mobile">Mobile App</button>
+                <button class="filter-btn" data-filter="photoshop">Photoshop</button>
+                <button class="filter-btn" data-filter="illustrator">Illustrator</button>
+                <button class="filter-btn" data-filter="video">Editing Video</button>
+                <button class="filter-btn" data-filter="fotografi">Fotografi</button>
+                <button class="filter-btn" data-filter="flyer">Flyer</button>
+                <button class="filter-btn" data-filter="logo">Logo</button>
+            </div>
+            <div class="projects-grid" id="projectsGrid">
+                <div class="project-card" data-category="website" data-reveal="fade-up" data-delay="100">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🌐</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Website</span>
+                        <h3 class="project-name">Company Profile</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="mobile" data-reveal="fade-up" data-delay="150">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">📱</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Mobile App</span>
+                        <h3 class="project-name">Aplikasi Kasir</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="photoshop" data-reveal="fade-up" data-delay="200">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🎨</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Photoshop</span>
+                        <h3 class="project-name">Poster Film</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="illustrator" data-reveal="fade-up" data-delay="250">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">✒️</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Illustrator</span>
+                        <h3 class="project-name">Maskot Brand</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="video" data-reveal="fade-up" data-delay="300">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🎬</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Editing Video</span>
+                        <h3 class="project-name">Corporate Video</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="fotografi" data-reveal="fade-up" data-delay="350">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">📸</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Fotografi</span>
+                        <h3 class="project-name">Produk Katalog</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="flyer" data-reveal="fade-up" data-delay="400">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">📄</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Flyer</span>
+                        <h3 class="project-name">Promo Event</h3>
+                    </div>
+                </div>
+                <div class="project-card" data-category="logo" data-reveal="fade-up" data-delay="450">
+                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🔷</div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Logo</span>
+                        <h3 class="project-name">Brand Identity</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="experience" id="experience" aria-label="Experience timeline">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Pengalaman</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Perjalanan karir.</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-reveal="fade-right" data-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2022 — Sekarang</span>
+                        <h3 class="timeline-title">Creative Director</h3>
+                        <p class="timeline-company">Studio Visual · Jakarta</p>
+                        <p class="timeline-desc">Memimpin tim desain dan pengembangan untuk berbagai klien korporasi.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal="fade-left" data-delay="200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2019 — 2022</span>
+                        <h3 class="timeline-title">UI/UX Designer</h3>
+                        <p class="timeline-company">Digital Agency · Bandung</p>
+                        <p class="timeline-desc">Merancang antarmuka aplikasi dan website untuk startup dan UMKM.</p>
+                    </div>
+                </div>
+                <div class="timeline-item" data-reveal="fade-right" data-delay="300">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2017 — 2019</span>
+                        <h3 class="timeline-title">Graphic Designer</h3>
+                        <p class="timeline-company">Media Kreatif · Yogyakarta</p>
+                        <p class="timeline-desc">Mendesain materi promosi, logo, dan konten visual untuk berbagai merek.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="skills" id="skills" aria-label="Skills">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Keahlian</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Spesialisasi.</h2>
+            <div class="skills-grid">
+                <div class="skill-card" data-reveal="zoom" data-delay="100">
+                    <div class="skill-circle" data-percent="92">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" />
+                            <circle cx="60" cy="60" r="54" class="skill-circle-fill" />
+                        </svg>
+                        <span class="skill-circle-label">92%</span>
+                    </div>
+                    <h4 class="skill-name">Photoshop</h4>
+                </div>
+                <div class="skill-card" data-reveal="zoom" data-delay="150">
+                    <div class="skill-circle" data-percent="88">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" />
+                            <circle cx="60" cy="60" r="54" class="skill-circle-fill" />
+                        </svg>
+                        <span class="skill-circle-label">88%</span>
+                    </div>
+                    <h4 class="skill-name">Illustrator</h4>
+                </div>
+                <div class="skill-card" data-reveal="zoom" data-delay="200">
+                    <div class="skill-circle" data-percent="85">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" />
+                            <circle cx="60" cy="60" r="54" class="skill-circle-fill" />
+                        </svg>
+                        <span class="skill-circle-label">85%</span>
+                    </div>
+                    <h4 class="skill-name">Editing Video</h4>
+                </div>
+                <div class="skill-card" data-reveal="zoom" data-delay="250">
+                    <div class="skill-circle" data-percent="90">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" />
+                            <circle cx="60" cy="60" r="54" class="skill-circle-fill" />
+                        </svg>
+                        <span class="skill-circle-label">90%</span>
+                    </div>
+                    <h4 class="skill-name">Fotografi</h4>
+                </div>
+                <div class="skill-card" data-reveal="zoom" data-delay="300">
+                    <div class="skill-circle" data-percent="82">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" />
+                            <circle cx="60" cy="60" r="54" class="skill-circle-fill" />
+                        </svg>
+                        <span class="skill-circle-label">82%</span>
+                    </div>
+                    <h4 class="skill-name">Web Dev</h4>
+                </div>
+                <div class="skill-card" data-reveal="zoom" data-delay="350">
+                    <div class="skill-circle" data-percent="78">
+                        <svg viewBox="0 0 120 120">
+                            <circle cx="60" cy="60" r="54" />
+                            <circle cx="60" cy="60" r="54" class="skill-circle-fill" />
+                        </svg>
+                        <span class="skill-circle-label">78%</span>
+                    </div>
+                    <h4 class="skill-name">Mobile App</h4>
+                </div>
+            </div>
+            <div class="skills-tech" data-reveal="fade-up" data-delay="200" style="display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1rem;">
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Figma</span>
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Adobe XD</span>
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Premiere Pro</span>
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">After Effects</span>
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Lightroom</span>
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">React</span>
+                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Flutter</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials" id="testimonials" aria-label="Testimonials">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Testimoni</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Apa kata klien.</h2>
+            <div class="testimonial-slider" id="testimonialSlider">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--accent);">👤</div>
+                            <p class="testimonial-text">
+                                "AMIRUL berhasil menghadirkan identitas visual yang benar-benar mencerminkan
+                                nilai brand kami. Prosesnya kolaboratif dan hasilnya luar biasa."
+                            </p>
+                            <h4 class="testimonial-name">Andi Pratama</h4>
+                            <p class="testimonial-role">CEO, Startup Digital</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--accent);">👤</div>
+                            <p class="testimonial-text">
+                                "Kualitas editing video dan desain yang diberikan sangat profesional.
+                                Hasil karya selalu di atas ekspektasi."
+                            </p>
+                            <h4 class="testimonial-name">Siti Rahmah</h4>
+                            <p class="testimonial-role">Manajer Marketing, F&B Company</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-avatar" style="display:flex;align-items:center;justify-content:center;font-size:2.5rem;color:var(--accent);">👤</div>
+                            <p class="testimonial-text">
+                                "Dari konsep hingga eksekusi, AMIRUL menunjukkan dedikasi dan
+                                kreativitas yang tinggi. Sangat direkomendasikan!"
+                            </p>
+                            <h4 class="testimonial-name">Budi Santoso</h4>
+                            <p class="testimonial-role">Founder, UMKM Kreatif</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-controls">
+                    <button class="testimonial-btn" id="prevTestimonial" aria-label="Previous testimonial">←</button>
+                    <div class="testimonial-dots" id="testimonialDots">
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    </div>
+                    <button class="testimonial-btn" id="nextTestimonial" aria-label="Next testimonial">→</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTACT ===== -->
+    <section class="contact" id="contact" aria-label="Contact">
+        <div class="container">
+            <div class="section-label" data-reveal="fade-up">Hubungi</div>
+            <h2 class="section-title" data-reveal="fade-up" data-delay="100">Mari berkolaborasi.</h2>
+            <div class="contact-grid">
+                <div class="contact-card glass" data-reveal="fade-right" data-delay="150">
+                    <form id="contactForm" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" placeholder="Nama lengkap" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="email@domain.com" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" rows="5" placeholder="Ceritakan tentang proyek Anda..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary magnetic-btn" data-strength="30">Kirim Pesan</button>
+                        <p class="form-status" id="formStatus"></p>
+                    </form>
+                </div>
+                <div class="contact-info" data-reveal="fade-left" data-delay="250">
+                    <div class="contact-detail">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:amirul@example.com">amirul@example.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h4>Lokasi</h4>
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="#" aria-label="Instagram" title="Instagram">📷</a>
+                        <a href="#" aria-label="YouTube" title="YouTube">▶️</a>
+                        <a href="#" aria-label="GitHub" title="GitHub">⌘</a>
+                        <a href="#" aria-label="LinkedIn" title="LinkedIn">🔗</a>
+                    </div>
+                    <div class="contact-map">
+                        <div class="map-placeholder">
+                            <span>📍 Jakarta, Indonesia</span>
+                            <span class="map-sub">Google Maps placeholder</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer" role="contentinfo">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#hero" class="footer-logo">AF</a>
+                <p class="footer-tagline">AMIRUL FUSILAT, S. I. Kom. — Creative Designer & Developer</p>
+            </div>
+            <nav class="footer-nav" aria-label="Footer navigation">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Work</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <div class="footer-bottom">
+                <p class="footer-copy">&copy; <span id="footerYear">2026</span> AMIRUL FUSILAT. All rights reserved.</p>
+                <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================
+    JAVASCRIPT — SEMUA LOGIKA DALAM SATU FILE
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ===== PRELOADER =====
+            const preloader = document.getElementById('preloader');
+            const preloaderBar = document.getElementById('preloaderBarFill');
+            const preloaderPercent = document.getElementById('preloaderPercent');
+            let loadProgress = 0;
+
+            function simulateLoading() {
+                const interval = setInterval(() => {
+                    loadProgress += Math.floor(Math.random() * 6) + 1;
+                    if (loadProgress >= 100) {
+                        loadProgress = 100;
+                        clearInterval(interval);
+                        preloader.classList.add('hide');
+                        document.body.style.cursor = 'auto';
+                        initReveal();
+                        initCounters();
+                        initSkillCircles();
+                        initTestimonials();
+                        initMagneticButtons();
+                        initCursor();
+                        initScrollProgress();
+                        initNavbar();
+                        initFilter();
+                        initBackToTop();
+                        initHamburger();
+                        initFloatingDock();
+                        initContactForm();
+                        setFooterYear();
+                        setTimeout(function() {
+                            document.body.style.cursor = 'none';
+                        }, 300);
+                    }
+                    preloaderBar.style.width = loadProgress + '%';
+                    preloaderPercent.textContent = loadProgress + '%';
+                }, 35);
+            }
+            simulateLoading();
+
+            // ===== CUSTOM CURSOR =====
+            var cursorDot = document.getElementById('cursorDot');
+            var cursorRing = document.getElementById('cursorRing');
+            var mouseX = 0,
+                mouseY = 0;
+            var ringX = 0,
+                ringY = 0;
+
+            function initCursor() {
+                document.addEventListener('mousemove', function(e) {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                    cursorDot.style.left = mouseX + 'px';
+                    cursorDot.style.top = mouseY + 'px';
+                    ringX += (mouseX - ringX) * 0.1;
+                    ringY += (mouseY - ringY) * 0.1;
+                    cursorRing.style.left = ringX + 'px';
+                    cursorRing.style.top = ringY + 'px';
+                });
+                var interactive = document.querySelectorAll('a, button, .btn, .project-card, .service-card');
+                interactive.forEach(function(el) {
+                    el.addEventListener('mouseenter', function() {
+                        cursorRing.style.width = '60px';
+                        cursorRing.style.height = '60px';
+                        cursorRing.style.borderColor = 'rgba(212,175,55,0.8)';
+                        cursorDot.style.width = '12px';
+                        cursorDot.style.height = '12px';
+                    });
+                    el.addEventListener('mouseleave', function() {
+                        cursorRing.style.width = '40px';
+                        cursorRing.style.height = '40px';
+                        cursorRing.style.borderColor = 'rgba(212,175,55,0.5)';
+                        cursorDot.style.width = '8px';
+                        cursorDot.style.height = '8px';
+                    });
+                });
+            }
+
+            // ===== SCROLL PROGRESS =====
+            function initScrollProgress() {
+                var circle = document.getElementById('scrollProgressCircle');
+                var totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+                window.addEventListener('scroll', function() {
+                    var progress = window.scrollY / totalHeight;
+                    var offset = 289 - progress * 289;
+                    circle.style.strokeDashoffset = offset;
+                });
+            }
+
+            // ===== NAVBAR =====
+            function initNavbar() {
+                var navbar = document.getElementById('navbar');
+                var navLinks = document.querySelectorAll('.nav-link');
+                var sections = document.querySelectorAll('section[id]');
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 60) {
+                        navbar.classList.add('scrolled');
+                    } else {
+                        navbar.classList.remove('scrolled');
+                    }
+                    var current = '';
+                    sections.forEach(function(section) {
+                        var sectionTop = section.offsetTop - 120;
+                        if (window.scrollY >= sectionTop) {
+                            current = section.getAttribute('id');
+                        }
+                    });
+                    navLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        if (link.getAttribute('data-section') === current) {
+                            link.classList.add('active');
+                        }
+                    });
+                });
+            }
+
+            // ===== HAMBURGER =====
+            function initHamburger() {
+                var btn = document.getElementById('hamburgerBtn');
+                var links = document.getElementById('navbarLinks');
+                btn.addEventListener('click', function() {
+                    var isOpen = links.classList.toggle('open');
+                    btn.classList.toggle('open');
+                    btn.setAttribute('aria-expanded', isOpen);
+                });
+                document.querySelectorAll('.nav-link').forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        links.classList.remove('open');
+                        btn.classList.remove('open');
+                        btn.setAttribute('aria-expanded', 'false');
+                    });
+                });
+            }
+
+            // ===== MAGNETIC BUTTONS =====
+            function initMagneticButtons() {
+                var btns = document.querySelectorAll('.magnetic-btn');
+                btns.forEach(function(btn) {
+                    var strength = parseFloat(btn.dataset.strength) || 20;
+                    btn.addEventListener('mousemove', function(e) {
+                        var rect = btn.getBoundingClientRect();
+                        var x = e.clientX - rect.left - rect.width / 2;
+                        var y = e.clientY - rect.top - rect.height / 2;
+                        var moveX = x / (rect.width / 2) * strength;
+                        var moveY = y / (rect.height / 2) * strength;
+                        btn.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
+                    });
+                    btn.addEventListener('mouseleave', function() {
+                        btn.style.transform = 'translate(0, 0)';
+                    });
+                });
+            }
+
+            // ===== SCROLL REVEAL =====
+            function initReveal() {
+                var reveals = document.querySelectorAll('[data-reveal]');
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            var delay = parseInt(entry.target.dataset.delay) || 0;
+                            setTimeout(function() {
+                                entry.target.classList.add('revealed');
+                            }, delay);
+                        }
+                    });
+                }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+                reveals.forEach(function(el) { observer.observe(el); });
+            }
+
+            // ===== COUNTERS =====
+            function initCounters() {
+                var counters = document.querySelectorAll('.hero-stat-number, .about-stat-number');
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            var el = entry.target;
+                            var target = parseInt(el.dataset.count);
+                            var current = 0;
+                            var increment = target / 80;
+                            var timer = setInterval(function() {
+                                current += increment;
+                                if (current >= target) {
+                                    el.textContent = target;
+                                    clearInterval(timer);
+                                } else {
+                                    el.textContent = Math.floor(current);
+                                }
+                            }, 20);
+                            observer.unobserve(el);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                counters.forEach(function(c) { observer.observe(c); });
+            }
+
+            // ===== SKILL CIRCLES =====
+            function initSkillCircles() {
+                var circles = document.querySelectorAll('.skill-circle');
+                var observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            var circle = entry.target;
+                            var percent = parseInt(circle.dataset.percent);
+                            var fill = circle.querySelector('.skill-circle-fill');
+                            var circumference = 339.292;
+                            var offset = circumference - (percent / 100) * circumference;
+                            fill.style.strokeDashoffset = offset;
+                            observer.unobserve(circle);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                circles.forEach(function(c) { observer.observe(c); });
+            }
+
+            // ===== TESTIMONIALS =====
+            function initTestimonials() {
+                var track = document.getElementById('testimonialTrack');
+                var slides = track.querySelectorAll('.testimonial-slide');
+                var dots = document.querySelectorAll('.dot');
+                var prevBtn = document.getElementById('prevTestimonial');
+                var nextBtn = document.getElementById('nextTestimonial');
+                var currentIndex = 0;
+                var totalSlides = slides.length;
+
+                function updateSlider(index) {
+                    track.style.transform = 'translateX(-' + (index * 100) + '%)';
+                    dots.forEach(function(dot, i) {
+                        dot.classList.toggle('active', i === index);
+                    });
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % totalSlides;
+                    updateSlider(currentIndex);
+                }
+
+                function prevSlide() {
+                    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+                    updateSlider(currentIndex);
+                }
+                nextBtn.addEventListener('click', nextSlide);
+                prevBtn.addEventListener('click', prevSlide);
+                dots.forEach(function(dot, i) {
+                    dot.addEventListener('click', function() {
+                        currentIndex = i;
+                        updateSlider(currentIndex);
+                    });
+                });
+                var autoInterval = setInterval(nextSlide, 5000);
+                var slider = document.getElementById('testimonialSlider');
+                slider.addEventListener('mouseenter', function() { clearInterval(autoInterval); });
+                slider.addEventListener('mouseleave', function() {
+                    autoInterval = setInterval(nextSlide, 5000);
+                });
+            }
+
+            // ===== PROJECT FILTER =====
+            function initFilter() {
+                var filterBtns = document.querySelectorAll('.filter-btn');
+                var projectCards = document.querySelectorAll('.project-card');
+                filterBtns.forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        filterBtns.forEach(function(b) { b.classList.remove('active'); });
+                        btn.classList.add('active');
+                        var filter = btn.dataset.filter;
+                        projectCards.forEach(function(card) {
+                            if (filter === 'all' || card.dataset.category === filter) {
+                                card.style.display = 'block';
+                                card.style.animation = 'fadeIn 0.5s ease forwards';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            }
+
+            // ===== BACK TO TOP =====
+            function initBackToTop() {
+                var btn = document.getElementById('backToTop');
+                btn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 400) {
+                        btn.style.opacity = '1';
+                        btn.style.pointerEvents = 'auto';
+                    } else {
+                        btn.style.opacity = '0';
+                        btn.style.pointerEvents = 'none';
+                    }
+                });
+                btn.style.transition = 'opacity 0.3s ease';
+                btn.style.opacity = '0';
+                btn.style.pointerEvents = 'none';
+            }
+
+            // ===== FLOATING DOCK =====
+            function initFloatingDock() {
+                var dock = document.getElementById('floatingDock');
+                var hero = document.getElementById('hero');
+                hero.addEventListener('mousemove', function(e) {
+                    var rect = hero.getBoundingClientRect();
+                    var x = (e.clientX - rect.left) / rect.width - 0.5;
+                    var y = (e.clientY - rect.top) / rect.height - 0.5;
+                    dock.style.transform = 'translate(' + (x * 8) + 'px, ' + (y * 8) + 'px)';
+                });
+                hero.addEventListener('mouseleave', function() {
+                    dock.style.transform = 'translate(0, 0)';
+                });
+            }
+
+            // ===== CONTACT FORM =====
+            function initContactForm() {
+                var form = document.getElementById('contactForm');
+                var status = document.getElementById('formStatus');
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var name = document.getElementById('name').value.trim();
+                    var email = document.getElementById('email').value.trim();
+                    var message = document.getElementById('message').value.trim();
+                    if (!name || !email || !message) {
+                        status.textContent = 'Harap isi semua kolom.';
+                        status.style.color = '#ff6b6b';
+                        return;
+                    }
+                    if (!email.includes('@')) {
+                        status.textContent = 'Masukkan email yang valid.';
+                        status.style.color = '#ff6b6b';
+                        return;
+                    }
+                    status.textContent = 'Pesan terkirim! (demo)';
+                    status.style.color = 'var(--accent)';
+                    form.reset();
+                    setTimeout(function() {
+                        status.textContent = '';
+                    }, 3000);
+                });
+            }
+
+            // ===== FOOTER YEAR =====
+            function setFooterYear() {
+                document.getElementById('footerYear').textContent = new Date().getFullYear();
+            }
+
+        });
+    </script>
+
+</body>
+</html>
