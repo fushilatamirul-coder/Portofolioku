@@ -476,10 +476,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 5rem;
+            font-size: clamp(4rem, 10vw, 7rem);
             font-weight: 700;
             color: var(--accent);
             font-family: var(--font-heading);
+            user-select: none;
         }
         .hero-image-glow {
             position: absolute;
@@ -529,6 +530,7 @@
             border: 1px solid var(--border-light);
             z-index: 5;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.2s ease;
         }
         .dock-icon {
             font-size: 1.2rem;
@@ -636,6 +638,11 @@
             font-size: 0.8rem;
             color: var(--text-secondary);
             border: 1px solid var(--border-light);
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+        .skill-tag:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
         }
         .about-image-wrapper {
             position: relative;
@@ -649,14 +656,15 @@
             aspect-ratio: 4/3;
             object-fit: cover;
             transition: transform 0.6s ease;
-            background: var(--bg-card);
+            background: var(--bg-secondary);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 4rem;
+            font-size: clamp(4rem, 10vw, 7rem);
             color: var(--accent);
             font-family: var(--font-heading);
             min-height: 300px;
+            user-select: none;
         }
         .about-image-wrapper:hover .about-image-img {
             transform: scale(1.03);
@@ -821,6 +829,9 @@
             margin-bottom: 3rem;
             padding-left: 1.5rem;
         }
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
         .timeline-dot {
             position: absolute;
             left: -2.7rem;
@@ -837,6 +848,10 @@
             padding: 1.5rem 2rem;
             border-radius: 16px;
             border: 1px solid var(--border-light);
+            transition: border-color 0.3s ease;
+        }
+        .timeline-content:hover {
+            border-color: var(--accent);
         }
         .timeline-year {
             font-size: 0.8rem;
@@ -908,6 +923,19 @@
             font-size: 1rem;
             font-weight: 500;
             color: var(--text-secondary);
+        }
+        .tech-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+        .tech-tag:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
         }
 
         /* --- TESTIMONIALS --- */
@@ -1058,6 +1086,7 @@
             margin-top: 1rem;
             font-size: 0.9rem;
             color: var(--accent);
+            min-height: 1.5rem;
         }
         .contact-info {
             display: flex;
@@ -1293,6 +1322,14 @@
                 width: 56px;
                 height: 56px;
             }
+            .floating-dock {
+                bottom: -12px;
+                padding: 0.5rem 1rem;
+                gap: 0.5rem;
+            }
+            .dock-icon {
+                font-size: 1rem;
+            }
         }
         @media (max-width: 480px) {
             .services-grid {
@@ -1308,6 +1345,17 @@
             }
             .contact-card.glass {
                 padding: 1.5rem;
+            }
+            .timeline {
+                padding-left: 1.5rem;
+            }
+            .timeline-dot {
+                left: -1.7rem;
+                width: 12px;
+                height: 12px;
+            }
+            .timeline-content {
+                padding: 1rem 1.2rem;
             }
         }
     </style>
@@ -1403,9 +1451,7 @@
             <div class="hero-visual">
                 <div class="hero-image-wrapper">
                     <div class="hero-image-glow" aria-hidden="true"></div>
-                    <div class="hero-image" style="background:var(--bg-card);display:flex;align-items:center;justify-content:center;font-size:6rem;font-weight:700;color:var(--accent);font-family:var(--font-heading);">
-                        AF
-                    </div>
+                    <div class="hero-image">AF</div>
                     <div class="hero-image-ring" aria-hidden="true"></div>
                 </div>
                 <div class="floating-dock" id="floatingDock">
@@ -1468,9 +1514,7 @@
                 </div>
                 <div class="about-image" data-reveal="fade-left" data-delay="300">
                     <div class="about-image-wrapper">
-                        <div class="about-image-img" style="display:flex;align-items:center;justify-content:center;font-size:5rem;color:var(--accent);font-family:var(--font-heading);background:var(--bg-secondary);">
-                            AF
-                        </div>
+                        <div class="about-image-img">AF</div>
                         <div class="about-image-glow" aria-hidden="true"></div>
                     </div>
                 </div>
@@ -1661,12 +1705,13 @@
                         <p class="timeline-company">Duta Qur'an Indonesia · Korwil Subang</p>
                         <p class="timeline-desc">Merancang antarmuka aplikasi dan website untuk Sekolah & Program Tahfidz.</p>
                     </div>
+                </div>
                 <div class="timeline-item" data-reveal="fade-right" data-delay="400">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-year">2020 — 2021</span>
                         <h3 class="timeline-title">Graphic Designer</h3>
-                        <p class="timeline-company">Media Kreatif · AQL Peduli, Jakarta Selatan </p>
+                        <p class="timeline-company">Media Kreatif · AQL Peduli, Jakarta Selatan</p>
                         <p class="timeline-desc">Mendesain materi promosi, logo, dan konten visual untuk berbagai merek.</p>
                     </div>
                 </div>
@@ -1742,13 +1787,13 @@
                 </div>
             </div>
             <div class="skills-tech" data-reveal="fade-up" data-delay="200" style="display:flex;flex-wrap:wrap;gap:0.8rem;justify-content:center;margin-top:1rem;">
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Figma</span>
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Adobe XD</span>
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Premiere Pro</span>
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">After Effects</span>
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Lightroom</span>
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">React</span>
-                <span class="tech-tag" style="background:var(--bg-card);border:1px solid var(--border-light);padding:0.5rem 1.5rem;border-radius:100px;font-size:0.85rem;color:var(--text-secondary);">Flutter</span>
+                <span class="tech-tag">Figma</span>
+                <span class="tech-tag">Adobe XD</span>
+                <span class="tech-tag">Premiere Pro</span>
+                <span class="tech-tag">After Effects</span>
+                <span class="tech-tag">Lightroom</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Flutter</span>
             </div>
         </div>
     </section>
@@ -2218,7 +2263,7 @@
                         status.style.color = '#ff6b6b';
                         return;
                     }
-                    status.textContent = 'Pesan terkirim! (demo)';
+                    status.textContent = '✅ Pesan terkirim! (demo)';
                     status.style.color = 'var(--accent)';
                     form.reset();
                     setTimeout(function() {
