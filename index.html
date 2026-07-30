@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
         /* ============================================================
-           ALL STYLES — INLINE DALAM SATU FILE
+           ALL STYLES
            ============================================================ */
         *,
         *::before,
@@ -473,14 +473,6 @@
             z-index: 2;
             border: 2px solid var(--border-light);
             background: var(--bg-card);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(4rem, 10vw, 7rem);
-            font-weight: 700;
-            color: var(--accent);
-            font-family: var(--font-heading);
-            user-select: none;
         }
         .hero-image-glow {
             position: absolute;
@@ -649,31 +641,28 @@
             border-radius: 20px;
             overflow: hidden;
             background: var(--bg-card);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
         }
         .about-image-img {
             width: 100%;
-            height: auto;
-            aspect-ratio: 4/3;
-            object-fit: cover;
+            max-height: 600px;
+            object-fit: contain;
             transition: transform 0.6s ease;
             background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: clamp(4rem, 10vw, 7rem);
-            color: var(--accent);
-            font-family: var(--font-heading);
-            min-height: 300px;
-            user-select: none;
+            border-radius: 20px;
         }
         .about-image-wrapper:hover .about-image-img {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
         .about-image-glow {
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), transparent 60%);
             pointer-events: none;
+            border-radius: 20px;
         }
 
         /* --- SERVICES --- */
@@ -759,11 +748,6 @@
             overflow: hidden;
             aspect-ratio: 4/3;
             background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--accent);
         }
         .project-image img {
             width: 100%;
@@ -777,7 +761,7 @@
         .project-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(4px);
             display: flex;
             align-items: center;
@@ -785,6 +769,8 @@
             gap: 0.8rem;
             opacity: 0;
             transition: opacity 0.4s ease;
+            flex-wrap: wrap;
+            padding: 1rem;
         }
         .project-card:hover .project-overlay {
             opacity: 1;
@@ -793,11 +779,11 @@
             font-weight: 600;
             color: var(--text-primary);
             border: 1px solid var(--text-primary);
-            padding: 0.5rem 1.5rem;
+            padding: 0.5rem 1.2rem;
             border-radius: 60px;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
-            background: transparent;
+            font-size: 0.85rem;
+            background: rgba(0, 0, 0, 0.3);
         }
         .project-link:hover {
             background: var(--accent);
@@ -810,8 +796,8 @@
             border-color: var(--accent);
         }
         .project-link-demo:hover {
-            background: var(--text-primary);
-            color: var(--bg-primary);
+            background: transparent;
+            color: var(--text-primary);
             border-color: var(--text-primary);
         }
         .project-meta {
@@ -1443,7 +1429,7 @@
         <div class="hero-grid-bg" aria-hidden="true"></div>
         <div class="container hero-container">
             <div class="hero-content">
-                <div class="hero-badge">✦ Bersedia untuk Kolaborasi</div>
+                <div class="hero-badge">✦ Tersedia untuk Kolaborasi</div>
                 <h1 class="hero-title">
                     <span class="hero-title-line">AMIRUL</span>
                     <span class="hero-title-line hero-title-line-gold">FUSILAT</span>
@@ -1476,7 +1462,7 @@
             <div class="hero-visual">
                 <div class="hero-image-wrapper">
                     <div class="hero-image-glow" aria-hidden="true"></div>
-                    <!-- ===== GANTI DENGAN LINK FOTO PROFIL ANDA ===== -->
+                    <!-- ===== GANTI DENGAN LINK FOTO PROFIL ANDA (imgbb direct link) ===== -->
                     <img src="https://i.ibb.co.com/2Y7RHFnm/My-Foto.png" alt="Foto Amirul Fusilat" class="hero-image" />
                     <div class="hero-image-ring" aria-hidden="true"></div>
                 </div>
@@ -1502,7 +1488,7 @@
             <div class="about-grid">
                 <div class="about-text" data-reveal="fade-right" data-delay="200">
                     <p>
-                        <strong>AMIRUL FUSILAT, S. I. Kom.</strong> — lulusan Ilmu Komunikasi
+                        <strong>AMIRUL FUSILAT, S. I. Kom.</strong> — lulusan Sistem Informasi
                         dengan spesialisasi di bidang desain dan pengembangan digital.
                         Memadukan logika teknologi dengan estetika visual untuk menciptakan
                         pengalaman yang bermakna.
@@ -1536,13 +1522,17 @@
                         <span class="skill-tag">Flyer</span>
                         <span class="skill-tag">Logo</span>
                     </div>
-                    <!-- ===== TOMBOL DOWNLOAD CV ===== -->
-                    <a href="cv-amirul.pdf" download class="btn btn-primary magnetic-btn" data-strength="25">Download CV</a>
+                    <!-- ===== TOMBOL DOWNLOAD CV (GAMBAR) ===== -->
+                    <!-- Ganti href dengan direct link gambar CV (PNG/JPEG) dari imgbb -->
+                    <a href="https://i.ibb.co.com/Y4rdtK6j/CV-Amirul-Fusilat.png" download="CV-Amirul-Fusilat.png" class="btn btn-primary magnetic-btn" data-strength="25">
+                        Download CV
+                    </a>
                 </div>
                 <div class="about-image" data-reveal="fade-left" data-delay="300">
                     <div class="about-image-wrapper">
-                        <!-- ===== GANTI DENGAN LINK GAMBAR CV ANDA ===== -->
-                        <img src="https://i.ibb.co.com/PsK6zDYB/CV-Me.png" alt="Preview CV Amirul" class="about-image-img" />
+                        <!-- ===== PREVIEW CV (rasio A4, tidak terpotong) ===== -->
+                        <!-- Ganti src dengan direct link gambar CV (sama dengan di atas) -->
+                        <img src="https://i.ibb.co.com/your-cv-image.png" alt="Preview CV Amirul" class="about-image-img" />
                         <div class="about-image-glow" aria-hidden="true"></div>
                     </div>
                 </div>
@@ -1615,13 +1605,14 @@
                 <button class="filter-btn" data-filter="fotografi">Fotografi</button>
                 <button class="filter-btn" data-filter="flyer">Flyer</button>
                 <button class="filter-btn" data-filter="logo">Logo</button>
-                <!-- tambahan filter sosial media -->
                 <button class="filter-btn" data-filter="social">Sosial Media</button>
             </div>
             <div class="projects-grid" id="projectsGrid">
+
                 <!-- ===== PROYEK 1: WEBSITE ===== -->
                 <div class="project-card" data-category="website" data-reveal="fade-up" data-delay="100">
                     <div class="project-image">
+                        <!-- Ganti src dengan link gambar proyek website -->
                         <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Website" alt="Company Profile" />
                     </div>
                     <div class="project-overlay">
@@ -1734,7 +1725,7 @@
                     </div>
                 </div>
 
-                <!-- ===== PROYEK 9 (BARU): SOSIAL MEDIA ===== -->
+                <!-- ===== PROYEK 9: SOSIAL MEDIA (BARU) ===== -->
                 <div class="project-card" data-category="social" data-reveal="fade-up" data-delay="500">
                     <div class="project-image">
                         <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Sosial+Media" alt="Kelola Akun Sosial Media" />
@@ -1747,13 +1738,14 @@
                         <span class="project-category">Sosial Media</span>
                         <h3 class="project-name">Manajemen Akun</h3>
                         <div class="project-social-icons">
-                            <a href="#" title="Instagram">📷</a>
-                            <a href="#" title="YouTube">▶️</a>
-                            <a href="#" title="TikTok">🎵</a>
-                            <a href="#" title="Facebook">👍</a>
+                            <a href="#" target="_blank" title="Instagram">📷</a>
+                            <a href="#" target="_blank" title="YouTube">▶️</a>
+                            <a href="#" target="_blank" title="TikTok">🎵</a>
+                            <a href="#" target="_blank" title="Facebook">👍</a>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -2014,7 +2006,7 @@
     </footer>
 
     <!-- ============================================================
-    JAVASCRIPT — SEMUA LOGIKA DALAM SATU FILE
+    JAVASCRIPT
     ============================================================ -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
