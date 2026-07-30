@@ -636,6 +636,8 @@
             border-color: var(--accent);
             color: var(--text-primary);
         }
+
+        /* ===== PERBAIKAN: PREVIEW CV TIDAK TERPOTONG ===== */
         .about-image-wrapper {
             position: relative;
             border-radius: 20px;
@@ -644,15 +646,16 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 300px;
+            min-height: 400px;
+            padding: 1rem;
         }
         .about-image-img {
             width: 100%;
             max-height: 600px;
             object-fit: contain;
+            border-radius: 12px;
             transition: transform 0.6s ease;
             background: var(--bg-secondary);
-            border-radius: 20px;
         }
         .about-image-wrapper:hover .about-image-img {
             transform: scale(1.02);
@@ -884,6 +887,21 @@
         .timeline-desc {
             color: var(--text-secondary);
             font-size: 0.95rem;
+        }
+        .timeline-desc ul {
+            list-style: none;
+            padding-left: 1.2rem;
+            margin-top: 0.3rem;
+        }
+        .timeline-desc ul li {
+            position: relative;
+            margin-bottom: 0.2rem;
+        }
+        .timeline-desc ul li::before {
+            content: "▸";
+            color: var(--accent);
+            position: absolute;
+            left: -1.2rem;
         }
 
         /* --- SKILLS CIRCLES --- */
@@ -1341,6 +1359,12 @@
             .dock-icon {
                 font-size: 1rem;
             }
+            .about-image-wrapper {
+                min-height: 250px;
+            }
+            .about-image-img {
+                max-height: 400px;
+            }
         }
         @media (max-width: 480px) {
             .services-grid {
@@ -1367,6 +1391,12 @@
             }
             .timeline-content {
                 padding: 1rem 1.2rem;
+            }
+            .about-image-wrapper {
+                min-height: 200px;
+            }
+            .about-image-img {
+                max-height: 300px;
             }
         }
     </style>
@@ -1450,7 +1480,7 @@
                         <span class="hero-stat-label">Tahun Pengalaman</span>
                     </div>
                     <div class="hero-stat">
-                        <span class="hero-stat-number" data-count="10">0</span>
+                        <span class="hero-stat-number" data-count="30">0</span>
                         <span class="hero-stat-label">Proyek Selesai</span>
                     </div>
                     <div class="hero-stat">
@@ -1463,7 +1493,7 @@
                 <div class="hero-image-wrapper">
                     <div class="hero-image-glow" aria-hidden="true"></div>
                     <!-- ===== GANTI DENGAN LINK FOTO PROFIL ANDA (imgbb direct link) ===== -->
-                    <img src="https://i.ibb.co.com/2Y7RHFnm/My-Foto.png" alt="Foto Amirul Fusilat" class="hero-image" />
+                    <img src="https://via.placeholder.com/400x400/161616/D4AF37?text=Foto+Profil" alt="Foto Amirul Fusilat" class="hero-image" />
                     <div class="hero-image-ring" aria-hidden="true"></div>
                 </div>
                 <div class="floating-dock" id="floatingDock">
@@ -1522,17 +1552,22 @@
                         <span class="skill-tag">Flyer</span>
                         <span class="skill-tag">Logo</span>
                     </div>
-                    <!-- ===== TOMBOL DOWNLOAD CV (GAMBAR) ===== -->
-                    <!-- Ganti href dengan direct link gambar CV (PNG/JPEG) dari imgbb -->
-                    <a href="https://i.ibb.co.com/Y4rdtK6j/CV-Amirul-Fusilat.png" download="CV-Amirul-Fusilat.png" class="btn btn-primary magnetic-btn" data-strength="25">
+                    <!-- ============================================================
+                         TOMBOL DOWNLOAD CV (GAMBAR)
+                         Ganti href dengan direct link gambar CV dari imgbb
+                         Pastikan link berakhiran .png atau .jpg
+                         ============================================================ -->
+                    <a href="https://via.placeholder.com/2555x3583/FFFFFF/000000?text=Ganti+dengan+link+CV+Anda" download="CV-Amirul-Fusilat.png" class="btn btn-primary magnetic-btn" data-strength="25">
                         Download CV
                     </a>
                 </div>
                 <div class="about-image" data-reveal="fade-left" data-delay="300">
                     <div class="about-image-wrapper">
-                        <!-- ===== PREVIEW CV (rasio A4, tidak terpotong) ===== -->
-                        <!-- Ganti src dengan direct link gambar CV (sama dengan di atas) -->
-                        <img src="https://i.ibb.co.com/your-cv-image.png" alt="Preview CV Amirul" class="about-image-img" />
+                        <!-- ============================================================
+                             PREVIEW CV - TIDAK TERPOTONG
+                             Ganti src dengan direct link gambar CV yang SAMA dengan di atas
+                             ============================================================ -->
+                        <img src="https://i.ibb.co.com/Y4rdtK6j/CV-Amirul-Fusilat.png" alt="Preview CV Amirul" class="about-image-img" />
                         <div class="about-image-glow" aria-hidden="true"></div>
                     </div>
                 </div>
@@ -1612,7 +1647,6 @@
                 <!-- ===== PROYEK 1: WEBSITE ===== -->
                 <div class="project-card" data-category="website" data-reveal="fade-up" data-delay="100">
                     <div class="project-image">
-                        <!-- Ganti src dengan link gambar proyek website -->
                         <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Website" alt="Company Profile" />
                     </div>
                     <div class="project-overlay">
@@ -1725,7 +1759,7 @@
                     </div>
                 </div>
 
-                <!-- ===== PROYEK 9: SOSIAL MEDIA (BARU) ===== -->
+                <!-- ===== PROYEK 9: SOSIAL MEDIA ===== -->
                 <div class="project-card" data-category="social" data-reveal="fade-up" data-delay="500">
                     <div class="project-image">
                         <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Sosial+Media" alt="Kelola Akun Sosial Media" />
@@ -1756,7 +1790,25 @@
             <div class="section-label" data-reveal="fade-up">Pengalaman</div>
             <h2 class="section-title" data-reveal="fade-up" data-delay="100">Perjalanan karir.</h2>
             <div class="timeline">
+                <!-- Item 1: Division Media and Content (sesuai screenshot) -->
                 <div class="timeline-item" data-reveal="fade-right" data-delay="100">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-year">2024 — Sekarang</span>
+                        <h3 class="timeline-title">Division Media and Content</h3>
+                        <p class="timeline-company">MTS PP. AL-MU'MINEN · Boarding School</p>
+                        <div class="timeline-desc">
+                            <ul>
+                                <li>Jurnalistik</li>
+                                <li>Media</li>
+                                <li>Kreatif</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 2: Admin Gudang -->
+                <div class="timeline-item" data-reveal="fade-right" data-delay="200">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-year">2025 — 2026</span>
@@ -1765,7 +1817,9 @@
                         <p class="timeline-desc">Leader Divisi Konten dan Media</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-reveal="fade-right" data-delay="200">
+
+                <!-- Item 3: Teacher Tahfidz & UI/UX Designer -->
+                <div class="timeline-item" data-reveal="fade-right" data-delay="300">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-year">2023 — 2025</span>
@@ -1774,7 +1828,9 @@
                         <p class="timeline-desc">Menjadi guru mapel IT website untuk Sekolah & Program Tahfidz</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-reveal="fade-left" data-delay="300">
+
+                <!-- Item 4: Teacher Tahfidz & UI/UX Designer (sebelumnya) -->
+                <div class="timeline-item" data-reveal="fade-left" data-delay="400">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-year">2021 — 2023</span>
@@ -1783,7 +1839,9 @@
                         <p class="timeline-desc">Merancang antarmuka aplikasi dan website untuk Sekolah & Program Tahfidz.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-reveal="fade-right" data-delay="400">
+
+                <!-- Item 5: Graphic Designer -->
+                <div class="timeline-item" data-reveal="fade-right" data-delay="500">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
                         <span class="timeline-year">2020 — 2021</span>
