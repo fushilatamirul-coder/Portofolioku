@@ -782,6 +782,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 0.8rem;
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -796,11 +797,22 @@
             border-radius: 60px;
             transition: all 0.3s ease;
             font-size: 0.9rem;
+            background: transparent;
         }
         .project-link:hover {
             background: var(--accent);
             color: var(--bg-primary);
             border-color: var(--accent);
+        }
+        .project-link-demo {
+            background: var(--accent);
+            color: var(--bg-primary);
+            border-color: var(--accent);
+        }
+        .project-link-demo:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+            border-color: var(--text-primary);
         }
         .project-meta {
             padding: 1.2rem 1.5rem;
@@ -816,6 +828,19 @@
             font-size: 1.2rem;
             font-weight: 600;
             margin-top: 0.2rem;
+        }
+        .project-social-icons {
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.8rem;
+            font-size: 1.4rem;
+        }
+        .project-social-icons a {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .project-social-icons a:hover {
+            transform: translateY(-4px) scale(1.1);
+            color: var(--accent);
         }
 
         /* --- EXPERIENCE / TIMELINE --- */
@@ -1451,7 +1476,8 @@
             <div class="hero-visual">
                 <div class="hero-image-wrapper">
                     <div class="hero-image-glow" aria-hidden="true"></div>
-                    <div class="hero-image">AF</div>
+                    <!-- ===== GANTI DENGAN LINK FOTO PROFIL ANDA ===== -->
+                    <img src="https://via.placeholder.com/400x400/161616/D4AF37?text=PROFIL" alt="Foto Amirul Fusilat" class="hero-image" />
                     <div class="hero-image-ring" aria-hidden="true"></div>
                 </div>
                 <div class="floating-dock" id="floatingDock">
@@ -1510,11 +1536,13 @@
                         <span class="skill-tag">Flyer</span>
                         <span class="skill-tag">Logo</span>
                     </div>
-                    <a href="#" class="btn btn-primary magnetic-btn" data-strength="25">Download CV</a>
+                    <!-- ===== TOMBOL DOWNLOAD CV ===== -->
+                    <a href="cv-amirul.pdf" download class="btn btn-primary magnetic-btn" data-strength="25">Download CV</a>
                 </div>
                 <div class="about-image" data-reveal="fade-left" data-delay="300">
                     <div class="about-image-wrapper">
-                        <div class="about-image-img">AF</div>
+                        <!-- ===== GANTI DENGAN LINK GAMBAR CV ANDA ===== -->
+                        <img src="https://via.placeholder.com/600x450/161616/D4AF37?text=CV+Preview" alt="Preview CV Amirul" class="about-image-img" />
                         <div class="about-image-glow" aria-hidden="true"></div>
                     </div>
                 </div>
@@ -1587,30 +1615,45 @@
                 <button class="filter-btn" data-filter="fotografi">Fotografi</button>
                 <button class="filter-btn" data-filter="flyer">Flyer</button>
                 <button class="filter-btn" data-filter="logo">Logo</button>
+                <!-- tambahan filter sosial media -->
+                <button class="filter-btn" data-filter="social">Sosial Media</button>
             </div>
             <div class="projects-grid" id="projectsGrid">
+                <!-- ===== PROYEK 1: WEBSITE ===== -->
                 <div class="project-card" data-category="website" data-reveal="fade-up" data-delay="100">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🌐</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Website" alt="Company Profile" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
+                        <a href="#" class="project-link project-link-demo">Live Demo</a>
                     </div>
                     <div class="project-meta">
                         <span class="project-category">Website</span>
                         <h3 class="project-name">Company Profile</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 2: MOBILE APP ===== -->
                 <div class="project-card" data-category="mobile" data-reveal="fade-up" data-delay="150">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">📱</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Mobile+App" alt="Aplikasi Kasir" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
+                        <a href="#" class="project-link project-link-demo">Live Demo</a>
                     </div>
                     <div class="project-meta">
                         <span class="project-category">Mobile App</span>
                         <h3 class="project-name">Aplikasi Kasir</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 3: PHOTOSHOP ===== -->
                 <div class="project-card" data-category="photoshop" data-reveal="fade-up" data-delay="200">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🎨</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Photoshop" alt="Poster Film" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
                     </div>
@@ -1619,8 +1662,12 @@
                         <h3 class="project-name">Poster Film</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 4: ILLUSTRATOR ===== -->
                 <div class="project-card" data-category="illustrator" data-reveal="fade-up" data-delay="250">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">✒️</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Illustrator" alt="Maskot Brand" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
                     </div>
@@ -1629,18 +1676,27 @@
                         <h3 class="project-name">Maskot Brand</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 5: EDITING VIDEO ===== -->
                 <div class="project-card" data-category="video" data-reveal="fade-up" data-delay="300">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🎬</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Video" alt="Corporate Video" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
+                        <a href="#" class="project-link project-link-demo">Tonton</a>
                     </div>
                     <div class="project-meta">
                         <span class="project-category">Editing Video</span>
                         <h3 class="project-name">Corporate Video</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 6: FOTOGRAFI ===== -->
                 <div class="project-card" data-category="fotografi" data-reveal="fade-up" data-delay="350">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">📸</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Fotografi" alt="Produk Katalog" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
                     </div>
@@ -1649,8 +1705,12 @@
                         <h3 class="project-name">Produk Katalog</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 7: FLYER ===== -->
                 <div class="project-card" data-category="flyer" data-reveal="fade-up" data-delay="400">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">📄</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Flyer" alt="Promo Event" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
                     </div>
@@ -1659,14 +1719,39 @@
                         <h3 class="project-name">Promo Event</h3>
                     </div>
                 </div>
+
+                <!-- ===== PROYEK 8: LOGO ===== -->
                 <div class="project-card" data-category="logo" data-reveal="fade-up" data-delay="450">
-                    <div class="project-image" style="background:var(--bg-secondary);font-size:3rem;color:var(--accent);">🔷</div>
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Logo" alt="Brand Identity" />
+                    </div>
                     <div class="project-overlay">
                         <a href="#" class="project-link">Detail →</a>
                     </div>
                     <div class="project-meta">
                         <span class="project-category">Logo</span>
                         <h3 class="project-name">Brand Identity</h3>
+                    </div>
+                </div>
+
+                <!-- ===== PROYEK 9 (BARU): SOSIAL MEDIA ===== -->
+                <div class="project-card" data-category="social" data-reveal="fade-up" data-delay="500">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x300/161616/D4AF37?text=Sosial+Media" alt="Kelola Akun Sosial Media" />
+                    </div>
+                    <div class="project-overlay">
+                        <a href="#" class="project-link">Detail →</a>
+                        <a href="#" class="project-link project-link-demo">Kunjungi</a>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-category">Sosial Media</span>
+                        <h3 class="project-name">Manajemen Akun</h3>
+                        <div class="project-social-icons">
+                            <a href="#" title="Instagram">📷</a>
+                            <a href="#" title="YouTube">▶️</a>
+                            <a href="#" title="TikTok">🎵</a>
+                            <a href="#" title="Facebook">👍</a>
+                        </div>
                     </div>
                 </div>
             </div>
